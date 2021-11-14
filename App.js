@@ -1,21 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import { NavigationContainer } from "@react-navigation/native"
+import React from 'react'
+import { StatusBar } from 'react-native'
+
+import { BottomNav } from './app/navigations/BottomNav'
+import {useFonts as useLatoFont, Lato_700Bold} from '@expo-google-fonts/lato'
+
+const App = () => {
+
+  const [latoFont] = useLatoFont({
+    Lato_700Bold
+  })
+
+  if(!latoFont){
+    return null
+  }
+
+  return(
+    <NavigationContainer>
+      <BottomNav />
+      <StatusBar barStyle="dark-content" />
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
